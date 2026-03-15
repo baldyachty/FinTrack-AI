@@ -40,6 +40,7 @@ cd FinTrack-AI
 
 ### 2. Set Up Environment
 ```bash
+cd FinTrack-AI/fintrack_backend
 python -m venv venv
 source venv/bin/activate  # On Windows use: venv\Scripts\activate
 pip install -r requirements.txt
