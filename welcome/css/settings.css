@@ -1,0 +1,306 @@
+/* ===== CSS FOR SETTINGS PAGE - SMOOTHER ANIMATIONS & LAYOUT FIXES ===== */
+
+/* === ANIMATIONS (Refined for less bounce) === */
+
+/* 1. Scroll-Triggered Section Animation (Smoother Slide Up) */
+@keyframes smoothSlideInUp {
+  from { opacity: 0; transform: translateY(40px); } /* Start slightly lower */
+  to { opacity: 1; transform: translateY(0); }
+}
+.scroll-animate { opacity: 0; } 
+.scroll-animate.is-visible[data-animation="fade-slide-up"] { /* Use the smoother animation */
+  animation: smoothSlideInUp 0.7s ease-out forwards; /* Standard ease-out */
+}
+
+/* 2. Button Confirmation Pop & Flash (Subtler) */
+@keyframes checkmarkPopSubtle { /* Less bounce */
+  0% { transform: scale(0.7); opacity: 0; }
+  80% { transform: scale(1.05); opacity: 1; } /* Smaller overshoot */
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes buttonConfirmEffectSubtle { 
+  0%, 100% { background-color: var(--primary); }
+  50% { background-color: #16a34a; } /* Flash Success Green, no scale */
+}
+@keyframes buttonDeleteEffectSubtle {
+  0%, 100% { background-color: #dc2626; }
+  50% { background-color: #ef4444; } /* Flash brighter red, no scale */
+}
+.btn-icon-confirm { 
+    display: none; opacity: 0; position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%); color: #fff; font-size: 1.2em; 
+}
+.btn-with-icon.is-confirming {
+  animation: buttonConfirmEffectSubtle 0.5s ease-out; 
+}
+.btn-danger.is-confirming {
+    animation: buttonDeleteEffectSubtle 0.5s ease-out;
+}
+.btn-with-icon.is-confirming .btn-text { opacity: 0; transition: opacity 0.15s ease-out; }
+.btn-with-icon.is-confirming .btn-icon-confirm { 
+    display: inline-block; opacity: 1; 
+    animation: checkmarkPopSubtle 0.4s ease-out 0.1s forwards; /* Use subtle pop */
+}
+
+/* 3. Input Focus Glow & Border Animation (Standard) */
+@keyframes inputFocusGlowBorder { /* Unchanged */ }
+.settings-form input:focus,
+.settings-form select:focus {
+  outline: none;
+  animation: inputFocusGlowBorder 0.3s ease-out forwards;
+}
+
+/* 4. Stylish Checkbox Animation (Standard Check) */
+@keyframes checkAnim { /* Standard check animation */
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.stylish-checkbox input[type="checkbox"] + span::before { 
+  content: ''; display: inline-block; width: 18px; height: 18px;
+  border: 2px solid var(--border-medium); border-radius: var(--radius-sm);
+  margin-right: var(--space-3); vertical-align: middle;
+  transition: all 0.2s ease-out; 
+}
+.stylish-checkbox input[type="checkbox"] + span::after { 
+  content: '✓'; position: absolute; left: 5px; top: 1px; 
+  font-size: 14px; font-weight: bold; color: white;
+  opacity: 0; transform: scale(0);
+}
+.stylish-checkbox input[type="checkbox"]:checked + span::before { 
+  background-color: var(--primary); border-color: var(--primary);
+}
+.stylish-checkbox input[type="checkbox"]:checked + span::after {
+  animation: checkAnim 0.3s ease-out forwards; /* Use standard check */
+}
+
+/* 5. Form Group Stagger Animation (Smoother Slide) */
+.animated-form-group {
+    opacity: 0;
+    transform: translateX(-20px); /* Start less far left */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.animated-form-group.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 6. Theme/Color Option Pop Animation (Gentle Scale - No Rotate) */
+@keyframes optionScaleIn {
+    from { opacity: 0; transform: scale(0.9); } /* Simple scale up */
+    to { opacity: 1; transform: scale(1); }
+}
+.animated-options .theme-option,
+.animated-options .color-swatch {
+    opacity: 0; /* Start hidden */
+}
+.animated-options.is-visible .theme-option,
+.animated-options.is-visible .color-swatch {
+    animation: optionScaleIn 0.4s ease-out forwards; /* Use gentle scale */
+}
+
+
+/* === LAYOUT & STYLES (Includes fixes for settings.png) === */
+
+.settings-sections { display: flex; flex-direction: column; gap: var(--space-6); } /* Reduced gap */
+
+.settings-section {
+  /* .card provides base styles */
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+}
+.settings-section:hover { /* Subtler hover */
+  transform: translateY(-4px); 
+  box-shadow: var(--shadow-lg); 
+  border-color: var(--primary-light); 
+}
+
+.section-title { 
+    font-size: var(--font-size-xl); font-weight: 600; color: var(--text-primary);
+    margin-bottom: var(--space-6); padding-bottom: var(--space-4); 
+    border-bottom: 1px solid var(--border-light);
+    display: flex; align-items: center; gap: var(--space-3);
+}
+.section-title svg { width: 22px; height: 22px; stroke-width: 2; color: var(--primary); }
+
+.settings-form { display: flex; flex-direction: column; gap: var(--space-5); } /* Reduced gap */
+.form-group { display: flex; flex-direction: column; gap: var(--space-2); }
+.form-group label:not(.checkbox-label):not(.theme-option) { 
+  font-size: var(--font-size-sm); /* Smaller labels */
+  font-weight: 500; color: var(--text-secondary); /* Lighter labels */
+}
+
+.settings-form input[type="text"],
+.settings-form input[type="email"],
+.settings-form input[type="password"] {
+  padding: var(--space-3) var(--space-4); 
+  border: 1px solid var(--border-medium); border-radius: var(--radius-lg);
+  font-size: var(--font-size-base); background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out, background-color 0.2s ease-out; 
+}
+.settings-form input:disabled { background-color: var(--bg-tertiary); color: var(--text-tertiary); cursor: not-allowed; }
+.form-group small { font-size: var(--font-size-xs); color: var(--text-tertiary); margin-top: var(--space-1); }
+.form-actions { margin-top: var(--space-4); display: flex; justify-content: flex-start; }
+
+/* Button with Icon state */
+.btn-with-icon { /* Base unchanged */ }
+.btn-with-icon .btn-text { /* Unchanged */ }
+/* Checkmark style already handled */
+
+
+/* === FIXES FOR settings.png === */
+
+/* Profile Picture Layout - CORRECTED */
+.profile-picture-upload {
+    display: flex; align-items: center; gap: var(--space-4); 
+    padding: var(--space-2) 0; 
+}
+.profile-pic-preview {
+    width: 60px; height: 60px; /* Adjusted size */
+    border-radius: 50%; object-fit: cover; 
+    border: 2px solid var(--border-light); 
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out; 
+}
+.profile-pic-preview.pop-in { /* Standard pop animation */
+    animation: optionScaleIn 0.3s ease-out forwards;
+}
+.profile-pic-preview:hover {
+    transform: scale(1.08); /* Subtler zoom */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+#uploadPicBtn { align-self: center; } 
+
+/* Theme Options Layout - CORRECTED */
+.theme-options { display: flex; gap: var(--space-4); flex-wrap: wrap; } 
+.theme-option {
+    display: flex; align-items: center; gap: var(--space-3);
+    cursor: pointer; padding: var(--space-3) var(--space-4); 
+    border-radius: var(--radius-lg); border: 2px solid transparent; 
+    transition: all 0.2s ease-out; 
+    position: relative; 
+}
+.theme-option input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
+.theme-option:hover { background-color: var(--bg-tertiary); } 
+.theme-preview { 
+    width: 24px; height: 24px; border-radius: var(--radius-md); 
+    display: flex; align-items: center; justify-content: center; 
+    font-weight: 600; font-size: var(--font-size-xs); 
+    border: 2px solid var(--border-medium); 
+    transition: all 0.2s ease-out; /* Smoother transition */
+}
+.theme-light-preview { background-color: #fff; color: #0f172a; }
+.theme-dark-preview { background-color: #0f172a; color: #f8fafc; }
+/* Style the label's border and text when checked */
+.theme-option input[type="radio"]:checked ~ span { /* Target text after preview */
+    color: var(--primary); font-weight: 600; 
+}
+.theme-option input[type="radio"]:checked ~ .theme-preview { /* Target preview */
+    border-color: var(--primary);
+    transform: scale(1.1); /* Subtler selection scale */
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+}
+.theme-option input[type="radio"]:focus-visible ~ .theme-preview { /* Standard focus */
+     box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.3);
+     border-color: var(--primary);
+}
+
+
+/* Accent Color Picker - Ensure Buttons are Clickable */
+.accent-color-options { display: flex; gap: var(--space-3); flex-wrap: wrap; } /* Reduced gap */
+.color-swatch { 
+    width: 32px; height: 32px; /* Slightly smaller */
+    border-radius: 50%; border: 3px solid transparent; 
+    cursor: pointer; background-color: var(--swatch-color);
+    padding: 0; 
+    transition: all 0.2s ease-out; /* Standard smooth transition */
+}
+.color-swatch:hover { 
+    transform: scale(1.1); /* Simple scale hover */
+    border-color: rgba(var(--text-primary-rgb), 0.2);
+}
+.color-swatch.active { 
+    border-color: var(--text-primary);
+    transform: scale(1.15); /* Slightly larger when active */
+    box-shadow: 0 0 0 4px rgba(var(--text-primary-rgb), 0.15); /* Subtler shadow */
+}
+
+
+/* Notifications Section */
+.checkbox-group { margin-bottom: var(--space-4); } 
+.stylish-checkbox { /* Base unchanged */ }
+.stylish-checkbox input[type="checkbox"] { /* Base unchanged */ }
+.stylish-checkbox span { /* Base unchanged */ }
+
+
+/* Account Management / Data & Privacy */
+.delete-account-group { /* Unchanged */ }
+.delete-account-group label { /* Unchanged */ }
+.btn-danger { /* Base unchanged */ }
+.btn-danger:hover:not(:disabled) { /* Subtler hover */
+  background-color: #b91c1c; 
+  border-color: #b91c1c;
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.25); 
+}
+.link { /* Unchanged */ }
+.security-feature { /* Unchanged */ }
+.feature-status { /* Unchanged */ }
+.feature-status.disabled { /* Unchanged */ }
+.feature-status.enabled { /* Unchanged */ }
+
+
+/* Footer Animation & Spacing - CORRECTED */
+.footer { 
+    opacity: 0; /* Start hidden */
+    margin-top: var(--space-12); /* Add more top margin */
+} 
+/* Ensure the initial-hidden class is used in HTML for JS targeting */
+.footer.initial-hidden.animate-load-in {
+    /* JS adds animate-load-in */
+    animation-delay: 1.0s; /* Standard delay after sections */
+}
+/* 2FA Modal Styling */
+.modal { 
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+  background: rgba(0,0,0,0.8); display: none; align-items: center; 
+  justify-content: center; z-index: 9999; 
+}
+.qrcode-container { 
+  display: flex; justify-content: center; margin: 1.5rem 0; 
+  background: white; padding: 15px; border-radius: 8px; 
+}
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.close-modal { background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-muted); }
+/* --- Fix Double Checkbox Bug --- */
+/* Hides the default square checkbox but keeps it clickable */
+.stylish-checkbox input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+/* Aligns the text and custom checkmark */
+.stylish-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 12px;
+}
+
+/* --- Profile Picture Layout --- */
+.profile-picture-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.profile-pic-preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--bg-secondary);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}

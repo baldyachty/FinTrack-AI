@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Privacy Policy - FinTrack AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .policy-container { max-width: 800px; margin: 100px auto; padding: 0 var(--space-6); }
+    h1 { margin-bottom: var(--space-8); color: var(--text-primary); }
+    h2 { margin-top: var(--space-8); margin-bottom: var(--space-4); color: var(--text-primary); }
+    p, li { color: var(--text-secondary); margin-bottom: var(--space-4); line-height: 1.8; }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--primary); text-decoration: none; font-weight: 500; margin-bottom: var(--space-6); transition: opacity 0.2s; }
+    .back-link:hover { opacity: 0.8; }
+    code { background: var(--bg-secondary, #f4f4f5); padding: 2px 4px; border-radius: 4px; font-family: monospace; font-size: 0.9em; }
+    strong { color: var(--text-primary); }
+  </style>
+</head>
+<body>
+  <div class="policy-container">
+    <a href="settings.html" class="back-link">← Back to Settings</a>
+    
+    <h1>Privacy Policy</h1>
+    <p>Last Updated: January 12, 2026</p>
+
+    <section>
+      <h2>1. Introduction to Data Privacy</h2>
+      <p>At <strong>FinTrack AI</strong>, we believe your financial data belongs to you. This policy outlines our commitment to protecting your privacy. We use industry-standard encryption and security protocols to ensure your information remains confidential.</p>
+    </section>
+
+    <section>
+      <h2>2. Technical Data Security</h2>
+      <p>We do not store plain-text passwords. Every password is processed through the <strong>Bcrypt hashing algorithm</strong>, creating a secure, one-way cryptographic representation. Furthermore, session security is maintained through <strong>JSON Web Tokens (JWT)</strong>, ensuring that only authenticated users can access specific <code>user_id</code> data.</p>
+    </section>
+
+    <section>
+      <h2>3. AI Model Data Usage</h2>
+      <p>Your transaction history is used locally to train a personalized <strong>K-Nearest Neighbors (KNN)</strong> model. This model learns your specific spending habits to suggest categories for future transactions. This training data is stored in isolated <code>.joblib</code> files associated with your unique account and is not used to train models for other users.</p>
+    </section>
+
+    <section>
+      <h2>4. Third-Party API Integration (Gemini AI)</h2>
+      <p>Our "Smart Chat" feature utilizes the <strong>Google Gemini API</strong>. When you ask a question, a sanitized summary of your recent transaction data is sent to the API to generate an intelligent response. We do not share your email, name, or hashed password with Google or any other third-party providers.</p>
+    </section>
+
+    <section>
+      <h2>5. Data Retention and Deletion Rights</h2>
+      <p>We retain your data for as long as your account is active. You have the <strong>"Right to be Forgotten,"</strong> which allows you to request the permanent deletion of your profile, all transaction history, and your personalized AI model files from our <code>fintrack.db</code> database.</p>
+    </section>
+
+    <section>
+      <h2>6. Cookies and Local Storage</h2>
+      <p>We use your browser's local storage to save UI preferences, such as your preferred <strong>Theme</strong> (Dark or Light mode) and <strong>Accent Color</strong>. This ensures a consistent experience every time you log in.</p>
+    </section>
+
+    <section>
+      <h2>7. Updates to this Policy</h2>
+      <p>We may update this Privacy Policy to reflect changes in AI technology or privacy laws. Users will be notified of significant changes via the email address (<strong>fintrackintelligence@gmail.com</strong>) provided during registration.</p>
+    </section>
+  </div>
+</body>
+</html>

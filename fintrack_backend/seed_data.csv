@@ -1,0 +1,89 @@
+description,amount,category,date,type
+Monthly Gig,20000,salary,2025-05-25,income
+Rent,6000,rent,2025-06-01,expense
+Naivas Groceries,3000,food,2025-06-05,expense
+Uber to Town,350,transport,2025-06-07,expense
+KPLC Tokens,1000,utilities,2025-06-10,expense
+Java House,400,food,2025-06-15,expense
+Bolt Home,300,transport,2025-06-20,expense
+Monthly Gig,20000,salary,2025-06-25,income
+Online Work,5000,freelance,2025-06-28,income
+Rent,6000,rent,2025-07-01,expense
+Quickmart Groceries,3200,food,2025-07-05,expense
+Bolt to School,300,transport,2025-07-07,expense
+Safaricom Data,1000,utilities,2025-07-10,expense
+KFC,700,food,2025-07-15,expense
+New Shoes,2500,shopping,2025-07-18,expense
+Uber Home,400,transport,2025-07-20,expense
+Monthly Gig,20000,salary,2025-07-25,income
+Rent,6000,rent,2025-08-01,expense
+Naivas Groceries,2800,food,2025-08-05,expense
+Uber Ride,300,transport,2025-08-07,expense
+KPLC Tokens,1000,utilities,2025-08-10,expense
+Family Gift,3000,other,2025-08-12,income
+Java House,450,food,2025-08-15,expense
+Bolt,350,transport,2025-08-20,expense
+Monthly Gig,20000,salary,2025-08-25,income
+Rent,6000,rent,2025-09-01,expense
+Groceries,3100,food,2025-09-05,expense
+Uber,350,transport,2025-09-07,expense
+Zuku Wi-Fi,1200,utilities,2025-09-10,expense
+Pizza Inn,900,food,2025-09-15,expense
+Jumia Order,1800,shopping,2025-09-18,expense
+Bolt Ride,300,transport,2025-09-20,expense
+Monthly Gig,20000,salary,2025-09-25,income
+Side Hustle,4000,freelance,2025-09-28,income
+Rent,6000,rent,2025-10-01,expense
+Naivas Groceries,2900,food,2025-10-05,expense
+Uber to School,300,transport,2025-10-07,expense
+KPLC Tokens,1000,utilities,2025-10-10,expense
+Java House,400,food,2025-10-15,expense
+Movie Ticket,800,other,2025-10-17,expense
+Bolt Home,350,transport,2025-10-20,expense
+Monthly Gig,20000,salary,2025-10-25,income
+Rent,6000,rent,2025-11-01,expense
+Groceries,3000,food,2025-11-05,expense
+Bolt,300,transport,2025-11-07,expense
+Safaricom Data,1000,utilities,2025-11-10,expense
+KFC,700,food,2025-11-15,expense
+Java House,450,food,2025-11-20,expense
+Naivas Groceries,2800,food,2025-11-21,expense
+Bolt Home,300,transport,2025-11-22,expense
+Safaricom Airtime,500,utilities,2025-11-23,expense
+Monthly Gig,20000,salary,2025-11-25,income
+Side Hustle,3500,freelance,2025-11-28,income
+Rent,6000,rent,2025-12-01,expense
+Quickmart Groceries,3100,food,2025-12-02,expense
+Uber to Office,350,transport,2025-12-03,expense
+Lunch - Mama Oliech,600,food,2025-12-05,expense
+Bolt Ride,300,transport,2025-12-07,expense
+KPLC Tokens,1200,utilities,2025-12-10,expense
+Netflix Subscription,1100,other,2025-12-12,expense
+Christmas Shopping,4500,shopping,2025-12-15,expense
+Carrefour Groceries,4000,food,2025-12-18,expense
+Holiday Party,1500,other,2025-12-20,expense
+Uber Home,400,transport,2025-12-22,expense
+Monthly Gig,20000,salary,2025-12-24,income
+Holiday Bonus,5000,other,2025-12-28,income
+New Year Dinner,2500,food,2025-12-31,expense
+Rent,6000,rent,2026-01-01,expense
+Pharmacy - Medicine,800,other,2026-01-02,expense
+Quickmart Groceries,2800,food,2026-01-03,expense
+Bolt to School,350,transport,2026-01-04,expense
+Morning Coffee,250,food,2026-01-05,expense
+Safaricom Data,1000,utilities,2026-01-05,expense
+Lunch - Chicken Inn,600,food,2026-01-06,expense
+Uber to Town,400,transport,2026-01-06,expense
+Naivas Groceries,3200,food,2026-01-07,expense
+Bolt Ride,300,transport,2026-01-07,expense
+Java House Coffee,450,food,2026-01-08,expense
+Safaricom Airtime,500,utilities,2026-01-08,expense
+Dinner - Artcaffe,1200,food,2026-01-09,expense
+Uber Home,450,transport,2026-01-09,expense
+KPLC Tokens,1500,utilities,2026-01-10,expense
+Supermarket Shopping,2000,shopping,2026-01-10,expense
+Sunday Brunch,1500,food,2026-01-11,expense
+Bolt to Church,350,transport,2026-01-11,expense
+Side Hustle,5000,freelance,2026-01-12,income
+Uber to Office,400,transport,2026-01-12,expense
+Stocks,50000,investment,2026-01-12,income

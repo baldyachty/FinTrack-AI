@@ -1,0 +1,666 @@
+/* ===== THE FIX IS HERE =====
+  Added the missing animation definition.
+*/
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ===== END OF FIX ===== */
+
+/* ===== CSS FOR DASHBOARD LAYOUT ===== */
+
+:root {
+  /* Define layout variables */
+  --sidebar-width: 260px;
+  --header-height: 70px;
+}
+
+body {
+  /* Ensure no default margin */
+  margin: 0;
+  background-color: var(--bg-secondary);
+}
+
+/* ===== NEW: KEYFRAME ANIMATIONS ===== */
+@keyframes fillProgress {
+  from { width: 0%; }
+}
+
+@keyframes countUpEffect {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* ===== END: KEYFRAME ANIMATIONS ===== */
+
+
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===== SIDEBAR STYLES (Unchanged) ===== */
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--bg-primary);
+  border-right: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6);
+  z-index: 100;
+}
+
+.sidebar-header {
+  margin-bottom: var(--space-8);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex-grow: 1;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.nav-link svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+}
+
+.nav-link:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.nav-link.active {
+  background-color: var(--primary);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Sidebar Footer (Unchanged) */
+.sidebar-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border-light);
+  padding-top: var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background-color: var(--primary);
+  color: var(--text-inverse);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.user-name {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-email {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#logoutButton {
+  flex-shrink: 0;
+}
+
+
+/* ===== MAIN CONTENT STYLES ===== */
+.main-content {
+  flex-grow: 1;
+  /* Offset by sidebar width */
+  margin-left: var(--sidebar-width);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* NEW: Added for animation */
+  opacity: 0;
+}
+
+.main-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.header-actions .btn-primary svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 3;
+}
+
+/* NEW: Animation class for JS */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out 0.1s forwards;
+}
+
+/* ===== UPDATED: DASHBOARD GRID & CARD STYLES ===== */
+.dashboard-grid {
+  display: grid;
+  /* UPDATED: 3 columns */
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.card {
+  background-color: var(--bg-primary);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-light);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+
+  /* UPDATED: Animation setup */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideIn 0.5s ease-out forwards;
+
+  /* NEW: Hover animation */
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+/* NEW: Card hover effect */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Card entrance animation delays */
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+/* NEW: Delays for new cards */
+.card:nth-child(5) { animation-delay: 0.5s; }
+.card:nth-child(6) { animation-delay: 0.6s; } /* Adjusted for 6 cards */
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+.card-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.card-link {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: none;
+}
+.card-link:hover {
+  text-decoration: underline;
+}
+
+/* Specific Card Styles */
+.card-balance .card-value {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: var(--space-1);
+}
+/* NEW: Count-up animation */
+.card-balance .animate-count-up {
+  opacity: 0;
+  animation: countUpEffect 0.6s ease-out 0.5s forwards;
+}
+
+.card-balance .card-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+/* UPDATED: Chart card layout */
+.card-chart {
+  grid-column: 2 / 4; /* Span 2 columns */
+  grid-row: 1 / 2;    /* Only on row 1 */
+}
+.chart-container {
+  position: relative;
+  flex-grow: 1;
+  min-height: 250px; /* Adjusted height */
+}
+
+/* UPDATED: Transactions card layout */
+.card-transactions {
+  grid-column: 1 / 2;
+  grid-row: 2 / 4; /* Span 2 rows */
+}
+
+/* UPDATED: Budgets card layout */
+.card-budgets {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3; /* Back to 1 row */
+}
+
+.transaction-list, .budget-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  overflow-y: auto;
+}
+
+.transaction-item, .budget-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.transaction-item .info, .budget-item .info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Fix for flex text overflow */
+}
+
+.transaction-item .name, .budget-item .name {
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.transaction-item .date, .budget-item .details {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.transaction-item .amount {
+  font-weight: 600;
+  color: var(--text-primary);
+  flex-shrink: 0;
+  margin-left: var(--space-2);
+}
+.transaction-item .amount.expense {
+  color: #ef4444; /* Red for expense */
+}
+.transaction-item .amount.income {
+  color: #22c55e; /* Green for income */
+}
+
+.budget-item .progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-top: var(--space-2);
+}
+
+.budget-item .progress {
+  height: 100%;
+  background-color: var(--primary);
+  border-radius: var(--radius-full);
+  /* NEW: Animated fill */
+  animation: fillProgress 1s ease-out forwards;
+}
+.budget-item.over .progress {
+  background-color: #ef4444; /* Red */
+}
+
+
+/* ===== NEW: STYLES FOR QUICK ADD & GOAL CARDS ===== */
+.card-quick-add {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+}
+.quick-add-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+.quick-add-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.quick-add-form label {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.quick-add-form input {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+.quick-add-form input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+.quick-add-form .btn-block {
+  width: 100%;
+  margin-top: var(--space-2);
+}
+
+/* Updated grid position from original code */
+.card-goal {
+  grid-column: 3 / 4;
+  grid-row: 2 / 4; /* Span 2 rows */
+}
+
+
+/* ===== NEW: FOOTER STYLES ===== */
+.footer {
+  margin-top: var(--space-8);
+  /* NEW: Animation setup */
+  opacity: 0;
+}
+
+
+/* ===== MODAL STYLES (Unchanged) ===== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.modal-box {
+  background-color: var(--bg-primary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  padding: var(--space-8);
+  width: 100%;
+  max-width: 450px;
+  animation: fadeSlideIn 0.3s ease-out forwards;
+}
+
+.modal-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-6);
+}
+
+.modal-box .form-group {
+  margin-bottom: var(--space-4);
+}
+.modal-box .form-group label {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  display: block;
+}
+.modal-box .form-group input,
+.modal-box .form-group select {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+.modal-box .form-group input:focus,
+.modal-box .form-group select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  /* UPDATED: 2 columns for tablet */
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .card-chart {
+    grid-column: 1 / 3; /* Span full width */
+  }
+  .card-transactions {
+    grid-column: 1 / 2;
+    grid-row: auto; /* Reset row span */
+  }
+  .card-budgets {
+    grid-column: 2 / 3;
+    grid-row: auto;
+  }
+  .card-quick-add {
+    grid-column: 1 / 2;
+    grid-row: auto;
+  }
+  .card-goal { /* Keep goal card style if it exists */
+    grid-column: 2 / 3;
+    grid-row: auto;
+  }
+  /* NEW: Adjust Smart Tips Card for 2 columns */
+  .card-smart-tips {
+     grid-column: 2 / 3; /* Place in second column */
+     grid-row: 3 / 4; /* Adjust row as needed */
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --sidebar-width: 70px;
+  }
+  /* UPDATED: 1 column for mobile */
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  /* Reset all grid positions for single column */
+  .card-chart,
+  .card-transactions,
+  .card-budgets,
+  .card-quick-add,
+  .card-goal,
+  .card-smart-tips { /* Added smart tips card */
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .sidebar {
+    padding: var(--space-4);
+    align-items: center;
+  }
+  .sidebar .brand-text,
+  .sidebar .nav-link span,
+  .sidebar .user-info {
+    display: none;
+  }
+  .sidebar-header {
+    margin-bottom: var(--space-8);
+  }
+  .nav-link {
+    justify-content: center;
+  }
+  .sidebar-footer {
+    padding-top: var(--space-4);
+    justify-content: center;
+  }
+  .sidebar-footer #logoutButton {
+    display: none;
+  }
+
+  .main-content {
+    margin-left: var(--sidebar-width);
+    padding: var(--space-4);
+  }
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+  .main-title {
+    font-size: var(--font-size-2xl);
+  }
+  .modal-box {
+    width: 90%;
+    padding: var(--space-6);
+  }
+}
+
+/* ===== NEW: STYLES FOR SMART TIPS CARD (Added at the end) ===== */
+.card-smart-tips {
+  /* Adjust grid position if needed, matches card-goal */
+  grid-column: 3 / 4;
+  grid-row: 2 / 4; /* Span 2 rows */
+  /* Add specific animation delay if needed, aligns with card-goal */
+  animation-delay: 0.6s;
+}
+
+.tips-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3); /* Space between tips */
+  overflow-y: auto; /* Allow scrolling if many tips */
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  flex-grow: 1; /* Allow list to take up space in card */
+}
+
+.tips-list li {
+  padding-left: var(--space-4);
+  position: relative;
+  line-height: 1.5;
+}
+
+/* Add a small bullet point or icon */
+.tips-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* Responsive adjustment for smart tips card (if needed) */
+@media (max-width: 1024px) {
+  .card-smart-tips {
+     grid-column: 2 / 3; /* Place in second column on tablet */
+     grid-row: 3 / 4;    /* Place below budgets/quick-add */
+  }
+}
+@media (max-width: 768px) {
+  .card-smart-tips {
+    grid-column: auto; /* Reset for single column */
+    grid-row: auto;
+  }
+}
+.security-badge {
+    background: rgba(34, 197, 94, 0.15); /* Soft green */
+    color: #22c55e;                      /* Success green */
+    padding: 0px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    margin-left: 4px;
+    cursor: help;
+}
+#logoutButton svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+}

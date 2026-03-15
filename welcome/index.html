@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FinTrack AI — Smart Expense Tracking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="brand-text">FinTrack <span class="brand-accent">AI</span></span>
+      </div>
+      <div class="nav-actions">
+        <button class="btn btn-ghost" id="darkModeToggle" aria-label="Toggle dark mode">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" id="darkModeIcon">
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+        <button class="btn btn-outline" id="loginBtn">Sign In</button>
+        <button class="btn btn-primary" id="getStartedBtn">Get Started</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <!-- Parallax background layers -->
+  <div class="hero-parallax">
+  <!-- Interactive ripples container -->
+  <div class="hero-ripples"></div>
+      <div class="parallax-layer parallax-blur" style="top:10%;left:5%;width:180px;height:180px;"></div>
+      <div class="parallax-layer parallax-dot" style="top:60%;left:12%;"></div>
+      <div class="parallax-layer parallax-shape" style="top:30%;right:8%;"></div>
+      <div class="parallax-layer parallax-dot" style="top:80%;right:18%;width:24px;height:24px;"></div>
+      <!-- Animated gradient background -->
+      <div class="hero-animated-bg"></div>
+      <!-- Floating particles -->
+      <div class="hero-particles"></div>
+    </div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          <span>AI-Powered Financial Management</span>
+        </div>
+        
+        <h1 class="hero-title">
+          Take Control of Your
+          <span class="gradient-text">Finances</span>
+          with Smart Tracking
+        </h1>
+        
+        <p class="hero-description">
+          Track expenses, set budgets, and get AI-powered insights to make better financial decisions. 
+          Perfect for students and young professionals.
+        </p>
+        
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-large" id="getStartedBtnMain">
+            <span>Start Tracking</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14m-7-7 7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <a href="https://youtu.be/V8KDjTb6Bgg" target="_blank" class="btn btn-ghost btn-large" id="demoBtn">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <polygon points="5,3 19,12 5,21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span>Watch Demo</span>
+</a>
+        </div>
+        
+         <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-number">3</div>
+            <div class="stat-label">AI Models Active</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">6 Month</div>
+            <div class="stat-label">Balance Forecast</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">2FA Protected</div>
+          </div>
+        </div>
+      </div> 
+      
+      <div class="hero-visual">
+        <div class="phone-mockup">
+          <div class="phone-screen">
+            <div class="screen-header">
+              <div class="screen-avatar"></div>
+              <div class="screen-info">
+                <div class="screen-name">Welcome back!</div>
+                <div class="screen-balance">KSh 2,847.50</div>
+              </div>
+            </div>
+            <div class="screen-chart">
+              <svg width="100%" height="100%" viewBox="0 0 300 120" id="heroChart">
+                <path d="M10,80 Q50,60 90,70 T170,50 T250,40" stroke="#6366f1" stroke-width="3" fill="none" id="heroChartPath"/>
+                <defs>
+                  <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#6366f1;stop-opacity:0.3"/>
+                    <stop offset="100%" style="stop-color:#6366f1;stop-opacity:0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M10,80 Q50,60 90,70 T170,50 T250,40 L250,120 L10,120 Z" fill="url(#chartGradient)"/>
+              </svg>
+            </div>
+            <div class="screen-categories">
+              <div class="category-item">
+                <div class="category-icon">🍔</div>
+                <div class="category-info">
+                  <div class="category-name">Food</div>
+                  <div class="category-amount">KSh 245.30</div>
+                </div>
+              </div>
+              <div class="category-item">
+                <div class="category-icon">🚗</div>
+                <div class="category-info">
+                  <div class="category-name">Transport</div>
+                  <div class="category-amount">KSh 89.50</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Everything you need to manage money</h2>
+        <p class="section-description">Powerful features designed to help you build better financial habits</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M9 19c-5 0-7-2-7-7s2-7 7-7 7 2 7 7-2 7-7 7z" stroke="currentColor" stroke-width="2"/>
+              <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Smart Categorization</h3>
+          <p class="feature-description">AI automatically categorizes your expenses and learns from your spending patterns.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M3 3v18h18" stroke="currentColor" stroke-width="2"/>
+              <path d="M18.5 8.5l-5 5-2-2-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Visual Analytics</h3>
+          <p class="feature-description">Beautiful charts and insights help you understand your spending habits at a glance.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Budget Management</h3>
+          <p class="feature-description">Set budgets for different categories and get alerts when you're approaching limits.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>FinTrack <span class="brand-accent">AI</span></span>
+          </div>
+          <p class="footer-description">
+            Smart expense tracking powered by AI. Take control of your finances with intelligent insights and beautiful analytics.
+          </p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          <p>Made by <strong>FinTrack Inc.</strong> &copy; 2025. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notifications -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="js/script.js"></script>
+  <div id="demoModal" class="modal-overlay-demo">
+  <div class="demo-container">
+    <button class="demo-close" id="closeDemo">&times;</button>
+    <div class="video-responsive">
+      <iframe 
+  id="demoVideoFrame"
+  src="https://www.youtube-nocookie.com/embed/V8KDjTb6Bgg"
+  title="FinTrack AI Demo" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+    </div>
+    <div class="demo-caption">
+      <h3>FinTrack AI: The Future of Finance</h3>
+      <p>Watch how our ARIMA models forecast your balance and detect anomalies in real-time.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

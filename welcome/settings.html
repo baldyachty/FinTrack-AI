@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Settings - FinTrack AI</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css"> <link rel="stylesheet" href="css/dashboard.css"> <link rel="stylesheet" href="css/settings.css"> 
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <div class="dashboard-layout">
+    <nav class="sidebar">
+       <div class="sidebar-header"> 
+         <div class="nav-brand"> 
+           <div class="logo"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> </div> 
+           <span class="brand-text">FinTrack <span class="brand-accent">AI</span></span> 
+         </div> 
+       </div>
+       <div class="sidebar-nav">
+         <a href="dashboard.html" class="nav-link"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> <span>Dashboard</span> </a>
+         <a href="transactions.html" class="nav-link"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> <span>Transactions</span> </a>
+         <a href="budgets.html" class="nav-link"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg> <span>Budgets</span> </a>
+         <a href="analytics.html" class="nav-link"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 20V10m-6 10V4M6 20v-6"></path></svg> <span>Analytics</span> </a>
+         <a href="settings.html" class="nav-link active"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82-.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> <span>Settings</span> </a>
+       </div>
+       <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar" id="userAvatar">JD</div>
+          <div class="user-info">
+            <div style="display: flex; align-items: center; gap: 4px;">
+              <span class="user-name" id="userName">Loading...</span>
+              <span id="2faBadge" class="security-badge" title="2FA Protected" style="display: none;">🛡️</span>
+            </div>
+            <span class="user-email" id="userEmail"></span>
+          </div>
+        </div>
+        <button class="btn btn-ghost" id="logoutButton" aria-label="Log Out" title="Log Out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        </button>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <header class="main-header initial-hidden" id="mainHeader">
+        <h1 class="main-title">Settings</h1>
+        <div class="header-actions">
+          <button class="btn btn-ghost" id="darkModeToggle" aria-label="Toggle dark mode">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" id="darkModeIcon">
+             <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="settings-sections">
+
+        <section class="settings-section card scroll-animate" data-animation="fade-slide-up">
+          <h2 class="section-title">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+             Profile Information
+          </h2>
+          <form id="profileForm" class="settings-form animated-form">
+            <div class="form-group animated-form-group">
+              <label for="profileName">Full Name</label>
+              <input type="text" id="profileName" name="name" required placeholder="Enter your full name">
+            </div>
+            <div class="form-group animated-form-group">
+              <label for="profileEmail">Email Address</label>
+              <input type="email" id="profileEmail" name="email" required disabled placeholder="your.email@example.com">
+              <small>Email cannot be changed for security reasons.</small>
+            </div>
+            <div class="form-group animated-form-group">
+                <label>Profile Picture</label>
+                <div class="profile-picture-upload">
+                    <img id="profilePicPreview" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgcj0iMzIiIGZpbGw9IiNFMEUyRTYiLz4KPHBhdGggZD0iTTMyIDMyQzM3LjUyMjggMzIgNDIgMjcuNTIyOCA0MiAyMkM0MiAxNi40NzczIDM3LjUyMjggMTIgMzIgMTJDMTYuNDc3MiAxMiAxMiAxNi40NzczIDEyIDIyQzEyIDI3LjUyMjggMTYuNDc3MiAzMiAzMiAzMloiIGZpbGw9IiNBNkFEQkUiLz4KPHBhdGggZD0iTTQ5LjA3MTYgNDguMzY2OUM0NS4yMDIxIDQzLjUwODYgNDAuMDMzMSA0MCAzMiA0MEMyMy45NjcgNDAgMTguNzQ3OSA0My41MDg2IDE0LjkxODUgNDguMzY2OUMxOC40Njc4IDUyLjUxODQgMjQuODY3MSA1NSA1Mi44NzA5QzQxLjEzMjkgNTUgNDYuNTMyMyA1Mi41MTg0IDQ5LjA3MTYgNDguMzY2OVoiIGZpbGw9IiNBNkFEQkUiLz4KPC9zdmc+Cg==" alt="Profile preview" class="profile-pic-preview"> 
+                    <input type="file" id="profilePicInput" accept="image/jpeg, image/png, image/webp" style="display: none;">
+                    <button type="button" class="btn btn-outline btn-small" id="uploadPicBtn">Change Picture</button>
+                </div>
+            </div>
+            <div class="form-actions animated-form-group">
+              <button type="submit" class="btn btn-primary btn-with-icon">
+                <span class="btn-text">Save Profile</span>
+                <span class="btn-icon-confirm" style="display: none;">✓</span> 
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="settings-section card scroll-animate" data-animation="fade-slide-up">
+          <h2 class="section-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l.346.666L19.5 15.31l-1.41 1.41L12 10.41l-6.09 6.31-1.41-1.41L11.654 3.356A2 2 0 0 1 12 2.69z"></path><path d="M12 21.31V10.41"></path></svg>
+            Appearance
+          </h2>
+          <div class="settings-form animated-form">
+             <div class="form-group animated-form-group">
+               <label>Theme</label>
+               <div class="theme-options animated-options">
+                  <label class="theme-option"> 
+                    <input type="radio" name="theme" value="light" id="themeLight"> 
+                    <span class="theme-preview theme-light-preview">Aa</span> 
+                    <span>Light</span> 
+                  </label>
+                  <label class="theme-option"> 
+                    <input type="radio" name="theme" value="dark" id="themeDark"> 
+                    <span class="theme-preview theme-dark-preview">Aa</span> 
+                    <span>Dark</span> 
+                  </label>
+               </div>
+             </div>
+             <div class="form-group animated-form-group">
+                 <label>Accent Color</label>
+                 <div class="accent-color-options animated-options" id="accentColorOptions">
+                     <button name="accent-color" type="button" class="color-swatch" data-color="#6366f1" title="Indigo" style="--swatch-color: #6366f1;"></button>
+                     <button name="accent-color" type="button" class="color-swatch" data-color="#ec4899" title="Pink" style="--swatch-color: #ec4899;"></button>
+                     <button name="accent-color" type="button" class="color-swatch" data-color="#22c55e" title="Green" style="--swatch-color: #22c55e;"></button>
+                     <button name="accent-color" type="button" class="color-swatch" data-color="#f59e0b" title="Amber" style="--swatch-color: #f59e0b;"></button>
+                     <button name="accent-color" type="button" class="color-swatch" data-color="#06b6d4" title="Cyan" style="--swatch-color: #06b6d4;"></button>
+                     <button name="accent-color" type="button" class="color-swatch" data-color="#ef4444" title="Red" style="--swatch-color: #ef4444;"></button>
+                 </div>
+             </div>
+          </div>
+        </section>
+
+        <section class="settings-section card scroll-animate" data-animation="fade-slide-up">
+           <h2 class="section-title"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Security </h2>
+           <form id="passwordForm" class="settings-form animated-form">
+             <div class="form-group animated-form-group"> <label for="currentPassword">Change Password</label> <input type="password" id="currentPassword" name="currentPassword" required placeholder="Enter current password"> </div>
+             <div class="form-group animated-form-group"> <input type="password" id="newPassword" name="newPassword" required placeholder="Min. 8 characters"> </div>
+             <div class="form-group animated-form-group"> <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm new password"> </div>
+             <div class="form-actions animated-form-group"> <button type="submit" class="btn btn-primary btn-with-icon"> <span class="btn-text">Update Password</span> <span class="btn-icon-confirm" style="display: none;">✓</span> </button> </div>
+           </form>
+            <div class="form-group animated-form-group security-feature"> <label>Two-Factor Authentication (2FA)</label> <p>Add an extra layer of security using an authenticator app.</p> <button type="button" class="btn btn-outline" id="setup2faBtn">Setup 2FA</button> <span class="feature-status disabled" id="2faStatus">Disabled</span> </div>
+        </section>
+
+        <section class="settings-section card scroll-animate" data-animation="fade-slide-up">
+           <h2 class="section-title"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg> Notifications </h2>
+           <form id="notificationForm" class="settings-form animated-form">
+             <div class="form-group checkbox-group animated-form-group"> <label class="checkbox-label stylish-checkbox"> <input type="checkbox" id="notifySummary" name="notifySummary"> <span>Receive weekly financial summary emails</span> </label> </div>
+             <div class="form-group checkbox-group animated-form-group"> <label class="checkbox-label stylish-checkbox"> <input type="checkbox" id="notifyAlerts" name="notifyAlerts"> <span>Get alerts when nearing or exceeding budget limits</span> </label> </div>
+             <div class="form-group checkbox-group animated-form-group"> <label class="checkbox-label stylish-checkbox"> <input type="checkbox" id="notifyUpdates" name="notifyUpdates"> <span>Inform me about new features and product updates</span> </label> </div>
+             <div class="form-actions animated-form-group"> <button type="submit" class="btn btn-primary btn-with-icon"> <span class="btn-text">Save Notification Preferences</span> <span class="btn-icon-confirm" style="display: none;">✓</span> </button> </div>
+           </form>
+        </section>
+        
+        <section class="settings-section card scroll-animate" data-animation="fade-slide-up">
+            <h2 class="section-title"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Data & Privacy </h2>
+            <div class="settings-form animated-form">
+                <div class="form-group animated-form-group"> <label>Export Data</label> <p>Download all your transaction and budget data in CSV format.</p> <button type="button" id="exportDataBtn" class="btn btn-outline btn-with-icon"> <span class="btn-text">Export My Data</span> <span class="btn-icon-confirm" style="display: none;">✓</span> </button> </div>
+                <div class="form-group animated-form-group"> <label>Privacy Policy</label> <p>Review our commitment to your data privacy.</p> <a href="privacy-policy.html" target="_blank" class="link">View Privacy Policy</a> </div>
+                <div class="form-group delete-account-group animated-form-group"> <label>Delete Account</label> <p>Permanently remove your account and all associated data. This action cannot be reversed.</p> <button type="button" id="deleteAccountBtn" class="btn btn-danger btn-with-icon"> <span class="btn-text">Delete My Account</span> <span class="btn-icon-confirm" style="display: none;">✓</span> </button> </div>
+            </div>
+        </section>
+
+      </div> <footer class="footer initial-hidden" id="mainFooter">
+           <div class="footer-container"> 
+             <div class="footer-content"> 
+               <div class="footer-brand"> 
+                 <div class="footer-logo"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> <span>FinTrack <span class="brand-accent">AI</span></span> </div> 
+                 <p class="footer-description"> Smart expense tracking powered by AI. </p> 
+               </div> 
+             </div> 
+             <div class="footer-bottom"> 
+               <div class="footer-copyright"> <p>Made by <strong>FinTrack Inc.</strong> &copy; 2025. All rights reserved.</p> </div> 
+             </div> 
+           </div>
+      </footer>
+      
+    </main>
+  </div>
+  <div id="twoFactorModal" class="modal" style="display:none;">
+    <div class="modal-content card">
+      <div class="modal-header">
+        <h3>Setup Two-Factor Authentication</h3>
+        <button type="button" class="close-modal" id="close2faModal">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <p>1. Scan this QR code with your Authenticator app</p>
+        <div id="qrcode" class="qrcode-container"></div>
+        <p>2. Enter the 6-digit code from your app to verify:</p>
+        <div class="form-group">
+          <input type="text" id="twoFactorVerifyCode" placeholder="000000" maxlength="6" style="text-align: center; font-size: 1.5rem; letter-spacing: 5px;">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-block" id="confirm2faBtn">Verify & Enable</button>
+      </div>
+    </div>
+  </div>
+  <div id="deleteAccountModal" class="modal-overlay" style="display: none;">
+  <div class="modal-box modal-box-small">
+    <h2 class="modal-title">Delete Account?</h2>
+    <p style="margin-bottom: var(--space-6); color: var(--text-secondary);">
+      This will permanently delete your account and all financial data. <strong>This action cannot be undone.</strong>
+    </p>
+    <div class="modal-actions" style="justify-content: space-between;">
+      <button type="button" class="btn btn-outline" id="cancelDeleteAccountBtn">Cancel</button>
+      <button type="button" class="btn btn-danger" id="confirmDeleteAccountBtn">Permanently Delete</button>
+    </div>
+  </div>
+</div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/settings.js"></script> 
+
+</body>
+</html>

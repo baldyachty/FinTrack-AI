@@ -1,0 +1,151 @@
+/* ===== CSS FOR TRANSACTIONS PAGE ===== */
+
+/* The main container for the page.
+  It re-uses the ".card" style from dashboard.css
+  which provides the border, shadow, and fade-in animation.
+*/
+.transactions-container {
+  padding: 0; /* Remove default card padding */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Make it fill the page height */
+  animation-delay: 0.1s; /* Set its animation delay */
+}
+
+/* Filter Bar styles */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap; /* Allow filters to wrap on small screens */
+  gap: var(--space-4);
+  padding: var(--space-6);
+  border-bottom: 1px solid var(--border-light);
+  background-color: var(--bg-primary);
+  /* Ensure it's inside the rounded corner */
+  border-top-left-radius: var(--radius-xl);
+  border-top-right-radius: var(--radius-xl);
+}
+
+.filter-input,
+.filter-select {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  height: 44px; /* Align height with buttons */
+}
+
+.filter-input {
+  flex: 1; /* Take up remaining space */
+  min-width: 200px;
+}
+
+.filter-select {
+  flex-basis: 150px;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
+}
+
+/* Table styles */
+.table-container {
+  width: 100%;
+  overflow-x: auto; /* Allow horizontal scrolling on small screens */
+  flex-grow: 1;
+}
+
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse; /* Clean, modern table lines */
+  font-size: var(--font-size-sm);
+}
+
+.transactions-table th,
+.transactions-table td {
+  padding: var(--space-4);
+  text-align: left;
+  border-bottom: 1px solid var(--border-light);
+  white-space: nowrap;
+}
+
+.transactions-table th {
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-size: var(--font-size-xs);
+  background-color: var(--bg-secondary);
+}
+
+/* Make body rows hoverable */
+.transactions-table tbody tr:hover {
+  background-color: var(--bg-tertiary);
+}
+
+/* No border on the last row */
+.transactions-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Cell-specific styles */
+.transactions-table .amount {
+  font-weight: 600;
+}
+
+.transactions-table .amount.expense {
+  color: #ef4444; /* Red */
+}
+
+.transactions-table .amount.income {
+  color: #22c55e; /* Green */
+}
+
+.transactions-table .category {
+  text-transform: capitalize;
+}
+
+.transactions-table .actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* Smaller buttons for the table */
+.transactions-table .actions .btn {
+  padding: var(--space-1) var(--space-2); 
+}
+
+/* Tag style for income/expense */
+.type-tag {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.type-tag.expense {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.type-tag.income {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+}
+
+/* No results message */
+.no-results {
+  text-align: center;
+  padding: var(--space-12);
+  color: var(--text-secondary);
+  font-size: var(--font-size-lg);
+}
+/* Optional: Make confirmation modal smaller */
+.modal-box-small {
+  max-width: 400px;
+}

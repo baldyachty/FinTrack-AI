@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Create Account - FinTrack AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <a href="index.html" class="nav-logo">
+          <div class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="brand-text">FinTrack <span class="brand-accent">AI</span></span>
+        </a>
+      </div>
+      <div class="nav-actions">
+        <button class="btn btn-ghost" id="darkModeToggle" aria-label="Toggle dark mode">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" id="darkModeIcon">
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Register Form Section -->
+  <section class="auth-section">
+    <!-- Cinematic animated background and particles -->
+    <div class="hero-animated-bg"></div>
+    <div class="hero-particles"></div>
+    <div class="hero-ripples"></div>
+    <div class="auth-container">
+      <div class="auth-box">
+        <h1 class="auth-title animate-fade-slide-in">Create Account</h1>
+        <p class="auth-description animate-fade-slide-in delay-1">Join FinTrack AI and take control of your finances</p>
+        
+        <form class="auth-form animate-fade-slide-in delay-2" id="registerForm">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+          </div>
+          
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="Create a password">
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+          </div>
+          
+          <div class="form-actions">
+            <label class="checkbox-label">
+              <input type="checkbox" id="terms" name="terms" required>
+              <span>
+  I agree to the 
+  <a href="#" id="tosLink">Terms of Service</a> and 
+  <a href="#" id="privacyLink">Privacy Policy</a>
+</span>
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-large btn-block">Create Account</button>
+        </form>
+        
+        <p class="auth-alternative">
+          Already have an account? <a href="login.html">Sign in</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/utils.js"></script>
+  <script>
+    // Ensure Utils is loaded before auth.js
+    if (!window.Utils) {
+      console.error('Utils module failed to load!');
+    } else {
+      console.log('Utils module loaded successfully');
+    }
+  </script>
+  <script src="js/auth.js"></script>
+  <script>
+    // Initialize after all scripts are loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOM fully loaded');
+      if (!window.Utils) {
+        console.error('Utils module not found after DOM load');
+      }
+      if (!window.authForms) {
+        console.error('AuthForms not initialized after DOM load');
+      }
+    });
+  </script>
+  <div id="policyModal" class="modal">
+  <div class="modal-overlay"></div>
+  <div class="modal-content animate-fade-slide-in">
+    <div class="modal-header">
+      <h2 id="modalTitle">Policy</h2>
+      <button class="btn-close" id="closeModal" aria-label="Close modal">&times;</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" id="modalAccept">I Understand</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
